@@ -8,10 +8,10 @@ from PIL import Image
 
 def process_image():
     # Windows path.
-    image_path = (os.getcwd() + "\supplier-data\images\\")
+    # image_path = (os.getcwd() + "\supplier-data\images\\")
 
     # Linux project path.
-    # image_path = "/home/student-00-e379d8f14a7e/supplier-data/images/"
+    image_path = "/home/student-00-acd8622a43a1/supplier-data/images/"
 
     # For each image that needs to be formatted, modify to specifications below.
     for image in os.listdir(image_path):
@@ -25,8 +25,7 @@ def process_image():
             continue
 
 def main(argv):
-    # Location of supplier images that need to be formatted.
-
+    
     formatting = process_image()
 
 if __name__ == "__main__":
