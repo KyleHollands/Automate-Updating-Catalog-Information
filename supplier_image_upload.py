@@ -8,13 +8,13 @@ from PIL import Image
 # Upload the previously formatted images to the web endpoint.
 
 def upload_image():
-    url = "http://35.239.232.248/upload/"
+    url = "http://34.68.178.235/upload/"
 
     # Windows path.
     # image_path = (os.getcwd() + "\supplier-data\images\\")
 
     # Linux project path.
-    image_path = "/home/student-00-acd8622a43a1/supplier-data/images/"
+    image_path = "/home/student-00-e963a890acb9/supplier-data/images/"
 
     # Open and upload each image in the specified directory.
     for image in os.listdir(image_path):

@@ -11,7 +11,7 @@ def process_image():
     # image_path = (os.getcwd() + "\supplier-data\images\\")
 
     # Linux project path.
-    image_path = "/home/student-00-acd8622a43a1/supplier-data/images/"
+    image_path = "/home/student-00-e963a890acb9/supplier-data/images/"
 
     # For each image that needs to be formatted, modify to specifications below.
     for image in os.listdir(image_path):
