@@ -2,45 +2,41 @@
 
 import os
 from datetime import date
-import sys
-import emails
-
-from reportlab.platypus import paragraph
 import reports
+import emails
 import glob
 
+date = date.today() # Acquiring the current date.
+title = "Processed Update on {}".format(date) # Title of the PDF
 
-def process_data(curr_date, report_title, txt_files, txt_list):
-    for files in txt_files:
-        with open(files, 'r') as f:
-            reader = f.read().split("\n")
-            txt_list.append(reader)
+text_files = glob.glob("/home/student-00-17a94b58acdf/supplier-data/descriptions/*.txt")
+txt_list = []
 
-    paragraph = ""
+# Loop through all text files in the descriptions directory.
+for files in text_files:
+     with  open(files,"r") as f:
+        reader = f.read().split("\n")
+        txt_list.append(reader) # Creating a list of lists from the text data.
 
-    for data in txt_list:
-        msg = ""
-        msg = "Name: {}<br/> Weight:{}<br/><br/>".format(data[0], data[1])
-        paragraph = paragraph + msg
+# Acquiring the body of the PDF from the txt_list.
 
-def main(argv):
-    curr_date = date.today() # Acquire current date and time.
-    report_title = "Processed Update on {}".format(date) # Title of report.
-    # txt_files = glob.glob("path/*.txt")
-    txt_files = glob.glob(r"C:\Users\kyleh\OneDrive\Education\Coursera\Google IT Automation with Python\Automating Real-World Tasks with Python\Week 4\Resources\Automating Updating Catalog Information\supplier-data\descriptions\\*.txt")
-    txt_list = []
+para_g = ""
 
-    processing = process_data(curr_date, report_title, txt_files, txt_list)
-
-    sender = "automation@example.com"
-    recipient = "student url"
-    subject = " Online Fruit Store Upload Completed "
-    body = "Fruits have been uploaded to the website successfully. An attached email with a detailed list is included."
-    attachment_path = "attachment directory"
-
-    reports.generate_report("pdf path", report_title, paragraph)
-    message = emails.generate_email(sender, recipient, subject, body, attachment_path)
-    emails.send_email(message)
+for fields in txt_list:
+    mesg = ""
+    mesg = "name: {}<br/> weight: {}<br/><br/>".format(fields[0],fields[1])
+    para_g = para_g + mesg
 
 if __name__ == "__main__":
-    main(sys.argv)
+    
+    # Acquiring all required values for sending the email.
+
+    sender = "automation@example.com"
+    recipient = "student-00-17a94b58acdf@example.com"
+    subject = " Upload Completed - Online Fruit Store "
+    body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
+    attachment_path = "/tmp/processed.pdf"
+
+    reports.generate_report("/tmp/processed.pdf",title,para_g)  # Call generate_report from reports.py and create the PDF.
+    msg = emails.generate_email(sender, recipient, subject, body, attachment_path) # Call generate_email from emails.py to create the email template.
+    emails.send_email(msg) # Call send_email in emails.py to send the email.

@@ -25,13 +25,6 @@ def post_products(url, descriptions_path, file_pattern, weight_pattern, number_p
                         fruit[product_keys[key_count]] = value
                         key_count += 1
 
-                    # if key_count != 1:
-                    #     fruit[product_keys[key_count]] = line.strip()
-                    #     key_count = key_count + 1
-                    # else:
-                    #     fruit[product_keys[key_count]] = line.strip()[:-4]
-                    #     key_count = key_count + 1
-
                 fruit["image_name"] = description.split(".")[0] + ".jpeg"
 
                 response = requests.post(url, json = fruit)
@@ -44,7 +37,7 @@ def main(argv):
     descriptions_path = (os.getcwd() + "\supplier-data\descriptions\\")
     
     # Linux project path
-    descriptions_path = "/home/student-00-e963a890acb9/supplier-data/descriptions/"
+    descriptions_path = "/home/student-00-17a94b58acdf/supplier-data/descriptions/"
 
     product_keys = ["name", "weight", "description", "image_name"]
 
@@ -52,7 +45,7 @@ def main(argv):
     file_pattern = r'([0-9]{3}[.][a-z][.txt]+)'
     weight_pattern = r'([\D]+)'
     number_pattern = r'(^[\d]+)'
-    url = "http://34.68.178.235/fruits/"
+    url = "http://35.239.145.178/fruits/"
 
     product_upload = post_products(url, descriptions_path, file_pattern, weight_pattern, number_pattern, product_keys)
     
