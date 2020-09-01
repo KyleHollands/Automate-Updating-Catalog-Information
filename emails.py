@@ -30,7 +30,7 @@ def generate_email(sender, recipient, subject, body, attachment_path):
     return message
 
 def generate_error_report(sender, recipient, subject, body):
-    # If an error arises, send an email.
+    # If an error arises, send an email with the same parameters.
     message = email.message.EmailMessage()
     message["From"] = sender
     message["To"] = recipient

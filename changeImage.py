@@ -7,10 +7,8 @@ from PIL import Image
 # Format the images to the specifications required by the supplier and/or website requirements.
 
 def process_image():
-    # Windows path.
-    # image_path = (os.getcwd() + "\supplier-data\images\\")
 
-    # Linux project path.
+    # Path to images.
     image_path = "/home/student-00-17a94b58acdf/supplier-data/images/"
 
     # For each image that needs to be formatted, modify to specifications below.

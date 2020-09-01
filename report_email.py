@@ -6,25 +6,25 @@ import reports
 import emails
 import glob
 
-date = date.today() # Acquiring the current date.
-title = "Processed Update on {}".format(date) # Title of the PDF
+date = date.today() # Acquire the current date.
+title = "Processed Update on {}".format(date) # Define the title of the PDF with the date acquired prior.
 
+# Acquire all of the text files in the descriptions directory.
 text_files = glob.glob("/home/student-00-17a94b58acdf/supplier-data/descriptions/*.txt")
 txt_list = []
 
 # Loop through all text files in the descriptions directory.
 for files in text_files:
-     with  open(files,"r") as f:
-        reader = f.read().split("\n")
+    with open(files,"r") as f:
+        reader = f.read().split("\n") # Split the lines at the newline markers.
         txt_list.append(reader) # Creating a list of lists from the text data.
 
 # Acquiring the body of the PDF from the txt_list.
-
 para_g = ""
+mesg = ""
 
 for fields in txt_list:
-    mesg = ""
-    mesg = "name: {}<br/> weight: {}<br/><br/>".format(fields[0],fields[1])
+    mesg = "name: {}<br/> weight: {}<br/><br/>".format(fields[0],fields[1]) # Acquire the name and weight values only.
     para_g = para_g + mesg
 
 if __name__ == "__main__":

@@ -10,15 +10,12 @@ from PIL import Image
 def upload_image():
     url = "http://35.239.145.178/upload/"
 
-    # Windows path.
-    # image_path = (os.getcwd() + "\supplier-data\images\\")
-
-    # Linux project path.
+    # Path to images.
     image_path = "/home/student-00-17a94b58acdf/supplier-data/images/"
 
     # Open and upload each image in the specified directory.
     for image in os.listdir(image_path):
-        if image.lower().endswith('.jpeg'):
+        if image.lower().endswith('.jpeg'): # Convert to all lowercase, then determine if the files with .jpeg.
             try:
                 with open(image_path + "/" + image, 'rb') as opened:
                     requests.post(url, files={'file': opened})
